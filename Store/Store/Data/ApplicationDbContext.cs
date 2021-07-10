@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
+using Store.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +14,8 @@ namespace Store.Data
             : base(options)
         {
         }
+
+        public DbSet<ProductTypes> ProductTypes { get; set; }
+        public DbSet<SpecialTag> SpecialTags { get; set; }
     }
 }
