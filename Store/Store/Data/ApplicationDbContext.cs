@@ -17,5 +17,7 @@ namespace Store.Data
 
         public DbSet<ProductTypes> ProductTypes { get; set; }
         public DbSet<SpecialTag> SpecialTags { get; set; }
+        public DbSet<Products> Products { get; set; }
+
     }
 }

@@ -178,3 +178,4 @@ C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Are
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\SpecialTag\Delete.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\SpecialTag\Details.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\SpecialTag\Edit.cshtml.g.cs
+C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Product\Index.cshtml.g.cs
