@@ -1,7 +1,81 @@
-﻿
+﻿@using Store.Models
+@model IEnumerable<Products>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Product List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp New Product Type</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(expression: c => c.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.productColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.ProductTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(expression: c => c.SpecialTagId)
+            </th>
+            @*  <th>
+            @Html.DisplayNameFor(expression: c => c.IsAvailable)
+                </th>*@
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Price</td>
+        <td>@item.productColor</td>
+        <td>@item.IsAvailable</td>
+        <td>@item.productTypes.ProductType</td>
+        <td>@item.SpecialTag.Name</td>
+        <td>
+            <partial name="_ButtonEdit" model="@item.Id" />
+        </td>
+    </tr>
+        }
+    </table>
+</div>
+@section scripts{
 
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+          var save = '@TempData["save"]'
+            if(save!='') {
+                alertify.success(save);
+            }
+            var edit = '@TempData["edit"]'
+            if(edit!='') {
+                alertify.success(edit);
+            }
+            var del = '@TempData["delete"]'
+            if (del!='') {
+                alertify.error(del);
+            }
+
+    })
+    </script>
+}

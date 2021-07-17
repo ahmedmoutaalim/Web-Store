@@ -19,6 +19,7 @@
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Areas\admin\Views\SpecialTags\" />
     <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>
