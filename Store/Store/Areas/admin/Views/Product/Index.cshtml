@@ -14,6 +14,22 @@
         <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp New Product Type</a>
     </div>
 </div>
+
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input type="number" class="form-control" name="lowAmount" />
+        </div>
+        <div class="col-3">
+            <input type="number" class="form-control" name="largeAmount" />
+        </div>
+        <div class="col-3">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+
 <br />
 <div>
     <table class="table table-striped border">
@@ -37,24 +53,24 @@
                 @Html.DisplayNameFor(expression: c => c.SpecialTagId)
             </th>
             @*  <th>
-            @Html.DisplayNameFor(expression: c => c.IsAvailable)
-                </th>*@
+                @Html.DisplayNameFor(expression: c => c.IsAvailable)
+                    </th>*@
             <th></th>
             <th></th>
         </tr>
         @foreach (var item in Model)
         {
-    <tr>
-        <td>@item.Name</td>
-        <td>@item.Price</td>
-        <td>@item.productColor</td>
-        <td>@item.IsAvailable</td>
-        <td>@item.productTypes.ProductType</td>
-        <td>@item.SpecialTag.Name</td>
-        <td>
-            <partial name="_ButtonEdit" model="@item.Id" />
-        </td>
-    </tr>
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.productColor</td>
+                <td>@item.IsAvailable</td>
+                <td>@item.productTypes.ProductType</td>
+                <td>@item.SpecialTag.Name</td>
+                <td>
+                    <partial name="_ButtonEdit" model="@item.Id" />
+                </td>
+            </tr>
         }
     </table>
 </div>

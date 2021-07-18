@@ -40,6 +40,18 @@ namespace Store.Areas.admin.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
+        {
+            var products = _db.Products.Include(c => c.productTypes).Include(c => c.SpecialTag)
+                .Where(c => c.Price >= lowAmount && c.Price <= largeAmount).ToList();
+            if (lowAmount == null || largeAmount == null)
+            {
+                products = _db.Products.Include(c => c.productTypes).Include(c => c.SpecialTag).ToList();
+            }
+            return View(products);
+        }
+
 
         //Post Create method 
         [HttpPost]
@@ -99,8 +111,90 @@ namespace Store.Areas.admin.Controllers
             return View(product);
         }
 
+        //Post Edit method
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(Products products, IFormFile image)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
+                    await image.CopyToAsync(new FileStream(name, FileMode.Create));
+                    products.Image = "Images/" + image.FileName;
+                }
 
+                if (image == null)
+                {
+                    products.Image = "Images/noimage.PNG";
+                }
+                _db.Products.Update(products);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(products);
+        }
+
+        //Get detaile product method 
+
+        public IActionResult Details(int? id)
+        {
+
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var product = _db.Products.Include(c => c.productTypes).Include(c => c.SpecialTag).FirstOrDefault(c => c.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        //Get delete action method 
+
+        public  IActionResult Delete(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+
+            }
+
+            var product = _db.Products.Include(c => c.productTypes).Include(c => c.SpecialTag).Where(c => c.Id == id).FirstOrDefault();
+
+            if (product == null)
+            {
+                return NotFound();
+
+            }
+            return View(product);
+        }
+
+        // post delete action method 
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _db.Products.FirstOrDefault(c => c.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
 
     }
