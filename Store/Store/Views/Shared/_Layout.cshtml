@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿﻿@using System.Net.Http
+@using Store.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ var userRole = HttpContextAccessor.HttpContext.Session.GetString("roleName");
+                int count = 0;
+                List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+                if (products == null)
+                {
+                    products = new List<Products>();
+                }
+                count = products.Count(); 
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <environment include="Development">
@@ -15,14 +29,18 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     </environment>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Store</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
+
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -44,6 +62,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="admin" asp-controller="Product" asp-action="Index">Product</a>
                         </li>
+                        <a class="nav-link text-dark" asp-area="admin" asp-controller="Product" asp-action="Index">
+                            <i class="fas fa-shopping-cart"></i>
+                            (@count)
+
+                        </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -60,9 +85,15 @@
             &copy; 2021 - Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

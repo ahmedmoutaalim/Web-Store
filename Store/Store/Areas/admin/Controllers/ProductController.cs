@@ -59,9 +59,11 @@ namespace Store.Areas.admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData["save"] = "Product has been saved ";
                 var searchProduct = _db.Products.FirstOrDefault(c => c.Name == product.Name);
                 if (searchProduct != null)
                 {
+                   
                     ViewBag.message = "This product is already exist";
                     ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
                     ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
@@ -118,11 +120,14 @@ namespace Store.Areas.admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData["edit"] = "Product has been updated";
                 if (image != null)
                 {
+
                     var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
                     await image.CopyToAsync(new FileStream(name, FileMode.Create));
                     products.Image = "Images/" + image.FileName;
+
                 }
 
                 if (image == null)
@@ -190,7 +195,7 @@ namespace Store.Areas.admin.Controllers
             {
                 return NotFound();
             }
-
+            TempData["delete"] = "Product type has been deleted";
             _db.Products.Remove(product);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

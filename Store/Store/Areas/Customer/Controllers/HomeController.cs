@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Store.Data;
 using Store.Models;
+using Store.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,15 +17,16 @@ namespace Store.Controllers
     [Area("Customer")]
     public class HomeController : Controller
     {
-        /*private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private ApplicationDbContext _db;
+        public HomeController( ApplicationDbContext db)
         {
-            _logger = logger;
-        }*/
+            _db = db;
+        } 
+
         public IActionResult Index()
         {
-            return View();
+            return View(_db.Products.Include(c => c.productTypes).Include(c => c.SpecialTag).ToList());
         }
        
         public IActionResult Privacy()
@@ -34,5 +39,82 @@ namespace Store.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        // Get detaile action methode
+
+        public ActionResult Detail(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _db.Products.Include(c => c.productTypes).FirstOrDefault(c => c.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        //POST product detail acation method
+        [HttpPost]
+        [ActionName("Detail")]
+        public ActionResult ProductDetail(int? id)
+        {
+            List<Products> products = new List<Products>();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _db.Products.Include(c => c.productTypes).FirstOrDefault(c => c.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            products = HttpContext.Session.Get<List<Products>>("products");
+            if (products == null)
+            {
+                products = new List<Products>();
+            }
+            products.Add(product);
+            HttpContext.Session.Set("products", products);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+
+        public IActionResult Remove(int? id)
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products != null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                if (product != null)
+                {
+                    products.Remove(product);
+                    HttpContext.Session.Set("products", products);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET product Cart action method
+
+        public IActionResult Cart()
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products == null)
+            {
+                products = new List<Products>();
+            }
+            return View(products);
+        }
+ 
+
     }
 }

@@ -184,3 +184,4 @@ C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Are
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ButtonEdit.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Product\Details.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Product\Delete.cshtml.g.cs
+C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Detail.cshtml.g.cs
