@@ -18,6 +18,8 @@ namespace Store.Data
         public DbSet<ProductTypes> ProductTypes { get; set; }
         public DbSet<SpecialTag> SpecialTags { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<OrdersDetail> OrdersDetails { get; set; }
 
     }
 }
