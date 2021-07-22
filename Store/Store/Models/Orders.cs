@@ -8,6 +8,12 @@ namespace Store.Models
 {
     public class Orders
     {
+
+        public Orders()
+        {
+            ordersDetails = new List<OrdersDetail>();
+        }
+
         public int Id { get; set; }
         
         [Required]
@@ -27,7 +33,7 @@ namespace Store.Models
 
         public DateTime OrderDate { get; set; }
 
-        public List<OrdersDetail> ordersDetails { get; set; }
+        public virtual List<OrdersDetail> ordersDetails { get; set; }
 
 
     }

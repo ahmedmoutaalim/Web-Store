@@ -58,7 +58,7 @@
     <div class="col-6 text-right">
         <h3>Total Amount</h3>
         <h4>Grant Total : @Model.Sum(c => c.Price)</h4>
-        <a asp-controller="Home" asp-action="Index" class="btn btn-success">Process to checkout</a>
+        <a asp-controller="Order" asp-action="Checkout" class="btn btn-success">Process to checkout</a>
   
     </div>
      
