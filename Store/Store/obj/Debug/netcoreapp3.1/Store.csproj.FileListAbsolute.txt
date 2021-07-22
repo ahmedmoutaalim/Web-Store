@@ -185,3 +185,4 @@ C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Vie
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Product\Details.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\admin\Views\Product\Delete.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Detail.cshtml.g.cs
+C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Cart.cshtml.g.cs

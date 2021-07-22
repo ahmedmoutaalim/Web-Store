@@ -103,6 +103,24 @@ namespace Store.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        // Remove method for the cart items
+        [ActionName("Remove")]
+        public IActionResult RemoveToCart(int? id)
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products != null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                if (product != null)
+                {
+                    products.Remove(product);
+                    HttpContext.Session.Set("products", products);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         //GET product Cart action method
 
         public IActionResult Cart()
