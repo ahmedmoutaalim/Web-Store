@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Store.Controllers
 {
@@ -24,9 +25,9 @@ namespace Store.Controllers
             _db = db;
         } 
 
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(c => c.productTypes).Include(c => c.SpecialTag).ToList());
+            return View(_db.Products.Include(navigationPropertyPath : c => c.productTypes).Include(navigationPropertyPath : c => c.SpecialTag).ToList().ToPagedList(pageNumber : page ?? 1,pageSize : 6));
         }
        
         public IActionResult Privacy()
