@@ -234,3 +234,6 @@ C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Are
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\User\Index.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_PartialView.cshtml.g.cs
 C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\User\Edit.cshtml.g.cs
+C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\User\Details.cshtml.g.cs
+C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\User\Locout.cshtml.g.cs
+C:\Users\Youcode\Desktop\Web-Store\Store\Store\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\User\Active.cshtml.g.cs
