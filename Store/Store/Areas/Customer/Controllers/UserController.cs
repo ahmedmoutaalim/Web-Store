@@ -28,6 +28,8 @@ namespace Store.Areas.Customer.Controllers
             return View(_db.ApplicationUsers.ToList());
 
         }
+
+
         public async Task<IActionResult>Create()
         {
             return View();
@@ -55,5 +57,58 @@ namespace Store.Areas.Customer.Controllers
             return View();
 
         }
+
+
+        public async Task<IActionResult> Edit(string id)
+        {
+
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ApplicationUser user)
+        {
+
+            var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
+
+            if(userInfo == null)
+            {
+                return NotFound();
+            }
+            userInfo.FirstName = user.FirstName;
+            userInfo.LastName = user.LastName;
+
+            var result =await _userManager.UpdateAsync(userInfo);
+            if (result.Succeeded)
+            {
+                /*  var isSaveRole = await _userManager.AddToRoleAsync(user, "User");*/
+                TempData["save"] = "User has been Update successfully";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(result);
+
+        }
+
+
+
+        public async Task<IActionResult> Details(string id)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+
+
+
     }
 }
