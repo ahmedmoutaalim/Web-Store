@@ -172,6 +172,34 @@ namespace Store.Areas.Customer.Controllers
         }
 
 
+        public async Task<IActionResult> Delete(string id)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(ApplicationUser user)
+        {
+            var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
+            if (userInfo == null)
+            {
+                return NotFound();
+
+            }
+            _db.ApplicationUsers.Remove(userInfo);
+            int rowAffected = _db.SaveChanges();
+            if (rowAffected > 0)
+            {
+                TempData["save"] = "User has been delete successfully";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(userInfo);
+        }
 
 
     }
