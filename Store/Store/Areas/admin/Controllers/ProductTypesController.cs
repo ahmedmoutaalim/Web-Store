@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Store.Data;
 using Store.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace Store.Areas.admin.Controllers
 {
     [Area("admin")]
+    [Authorize]
     public class ProductTypesController : Controller
     {
 
@@ -18,6 +20,7 @@ namespace Store.Areas.admin.Controllers
         {
             _db = db;
         }
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(_db.ProductTypes.ToList());

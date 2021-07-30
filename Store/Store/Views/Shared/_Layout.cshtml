@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Store</title>
+    <title >@ViewData["Title"] - Store</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
@@ -60,22 +60,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+@if(userRole == "Admin"){
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="admin" asp-controller="ProductTypes" asp-action="Index">Product Type</a>
-                        </li>
+                            </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="admin" asp-controller="SpecialTag" asp-action="Index">Special Tag</a>
-                        </li>
+                            </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="admin" asp-controller="Product" asp-action="Index">Product</a>
-                        </li>
+                            </li>
+
+                    }
+
+                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Cart">
                             <i class="fas fa-shopping-cart"></i>
                             (@count)
 
                         </a>
-                        </li>
+                    </li>
 
                     </ul>
                 </div>
